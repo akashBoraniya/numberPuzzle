@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle</title>
+    <style>
+        /* button{
+            height: 100px;
+            width: 100px;
+        } */
+        /* *{
+            padding: 0;
+            margin: 0;
+        } */
+        .container {
+            width: 330px;
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+            justify-content: space-evenly;
+            /* background-color: black; */
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            border-radius: 20%;
+            font-size: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* outline: 1px solid black; */
+            box-shadow: 0 14px 110px rgba(0, 0, 0, 0.25),
+                0 10px 10px rgba(0, 0, 0, 0.22);
+            /* background-color: yellow; */
+        }
+
+        h1 {
+            text-align: center;
+            color: red;
+            margin: 15px 0px 15px 0px;
+        }
+
+        #win {
+            color: green;
+        }
+
+        /* .reset {
+            background-color: pink;
+            margin-left: 50%;
+        } */
+    </style>
+</head>
+
+<body>
+    <!-- <marquee behavior="slide" scrollamount="15" loop="500" direction="right"> -->
+    <h1>Puzzle Game</h1>
+    <!-- </marquee> -->
+    <div class="container">
+        <div class="box" id="i1" onclick="f1()">1</div>
+        <div class="box" id="i2" onclick="f2()">2</div>
+        <div class="box" id="i3" onclick="f3()">3</div>
+        <div class="box" id="i4" onclick="f4()">4</div>
+        <div class="box" id="i5" onclick="f5()">5</div>
+        <div class="box" id="i6" onclick="f6()">6</div>
+        <div class="box" id="i7" onclick="f7()">7</div>
+        <div class="box" id="i8" onclick="f8()"></div>
+        <div class="box" id="i9" onclick="f9()">8</div>
+    </div>
+
+    <h1 id="win"></h1>
+
+    <button class="reset" onclick="reset()">Play Again!</button>
+</body>
+
+<script>
+    var arr = [];
+    for (let i = 0; arr.length != 9; i++) {
+        let a = Math.ceil(Math.random() * 9);
+        if (arr.includes(a)) {
+        }
+        else {
+            arr.push(a);
+        }
+    }
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] == 9) {
+            arr[i] = "";
+        }
+    }
+
+    let touch = document.getElementsByClassName("box");
+    for (let i = 0; i < 9; i++) {
+        touch[i].innerHTML = arr[i];
+    }
+
+    var v1 = document.getElementById("i1");
+    var v2 = document.getElementById("i2");
+    var v3 = document.getElementById("i3");
+    var v4 = document.getElementById("i4");
+    var v5 = document.getElementById("i5");
+    var v6 = document.getElementById("i6");
+    var v7 = document.getElementById("i7");
+    var v8 = document.getElementById("i8");
+    var v9 = document.getElementById("i9");
+
+    var Winner = "";
+
+    function f1() {
+        if (v2.innerHTML == "") {
+            v2.innerHTML = v1.innerHTML;
+            v1.innerHTML = "";
+        } else if (v4.innerHTML == "") {
+            v4.innerHTML = v1.innerHTML;
+            v1.innerHTML = "";
+        }
+        // win();
+    }
+
+    function f2() {
+        if (v1.innerHTML == "") {
+            v1.innerHTML = v2.innerHTML;
+            v2.innerHTML = "";
+        } else if (v3.innerHTML == "") {
+            v3.innerHTML = v2.innerHTML;
+            v2.innerHTML = "";
+        } else if (v5.innerHTML == "") {
+            v5.innerHTML = v2.innerHTML;
+            v2.innerHTML = "";
+        }
+        // win();
+    }
+
+    function f3() {
+        if (v2.innerHTML == "") {
+            v2.innerHTML = v3.innerHTML;
+            v3.innerHTML = "";
+        } else if (v6.innerHTML == "") {
+            v6.innerHTML = v3.innerHTML;
+            v3.innerHTML = "";
+        }
+        // win();
+    }
+
+    function f4() {
+        if (v1.innerHTML == "") {
+            v1.innerHTML = v4.innerHTML;
+            v4.innerHTML = "";
+        } else if (v5.innerHTML == "") {
+            v5.innerHTML = v4.innerHTML;
+            v4.innerHTML = "";
+        } else if (v7.innerHTML == "") {
+            v7.innerHTML = v4.innerHTML;
+            v4.innerHTML = "";
+        }
+        // win();
+    }
+
+    function f5() {
+        if (v2.innerHTML == "") {
+            v2.innerHTML = v5.innerHTML;
+            v5.innerHTML = "";
+        } else if (v4.innerHTML == "") {
+            v4.innerHTML = v5.innerHTML;
+            v5.innerHTML = "";
+        } else if (v6.innerHTML == "") {
+            v6.innerHTML = v5.innerHTML;
+            v5.innerHTML = "";
+        } else if (v8.innerHTML == "") {
+            v8.innerHTML = v5.innerHTML;
+            v5.innerHTML = "";
+        }
+        // win();
+    }
+
+    function f6() {
+        if (Winner == "") {
+            if (v3.innerHTML == "") {
+                v3.innerHTML = v6.innerHTML;
+                v6.innerHTML = "";
+            } else if (v5.innerHTML == "") {
+                v5.innerHTML = v6.innerHTML;
+                v6.innerHTML = "";
+            } else if (v9.innerHTML == "") {
+                v9.innerHTML = v6.innerHTML;
+                v6.innerHTML = "";
+            }
+        }
+        // win();
+    }
+
+    function f7() {
+        if (v4.innerHTML == "") {
+            v4.innerHTML = v7.innerHTML;
+            v7.innerHTML = "";
+        } else if (v8.innerHTML == "") {
+            v8.innerHTML = v7.innerHTML;
+            v7.innerHTML = "";
+        }
+        // win();
+    }
+
+    function f8() {
+        console.log("W8="+Winner);
+        if (Winner == "") {
+        console.log("W8=HW");
+
+            if (v5.innerHTML == "") {
+                v5.innerHTML = v8.innerHTML;
+                v8.innerHTML = "";
+            } else if (v7.innerHTML == "") {
+                v7.innerHTML = v8.innerHTML;
+                v8.innerHTML = "";
+            } else if (v9.innerHTML == "") {
+                v9.innerHTML = v8.innerHTML;
+                v8.innerHTML = "";
+            }
+        }
+        // win();
+    }
+
+    function f9() {
+        if (v6.innerHTML == "") {
+            v6.innerHTML = v9.innerHTML;
+            v9.innerHTML = "";
+        } else if (v8.innerHTML == "") {
+            v8.innerHTML = v9.innerHTML;
+            v9.innerHTML = "";
+        }
+        win();
+    }
+
+    function reset() {
+        console.log("W1="+Winner);
+        Winner = "";
+
+        document.getElementById("win").innerHTML = "";
+        console.log("W2="+Winner);
+
+
+        var arr = [];
+        for (let i = 0; arr.length != 9; i++) {
+            let a = Math.ceil(Math.random() * 9);
+            if (arr.includes(a)) {
+            }
+            else {
+                arr.push(a);
+            }
+        }
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] == 9) {
+                arr[i] = "";
+            }
+        }
+
+        let touch = document.getElementsByClassName("box");
+        for (let i = 0; i < 9; i++) {
+            touch[i].innerHTML = arr[i];
+        }
+    }
+
+    function win() {
+        var v1 = document.getElementById("i1").innerHTML;
+        var v2 = document.getElementById("i2").innerHTML;
+        var v3 = document.getElementById("i3").innerHTML;
+        var v4 = document.getElementById("i4").innerHTML;
+        var v5 = document.getElementById("i5").innerHTML;
+        var v6 = document.getElementById("i6").innerHTML;
+        var v7 = document.getElementById("i7").innerHTML;
+        var v8 = document.getElementById("i8").innerHTML;
+        var v9 = document.getElementById("i9").innerHTML;
+
+        if (v1 == "1" && v2 == "2" && v3 == "3" && v4 == "4" && v5 == "5" && v6 == "6" && v7 == "7" && v8 == "8" && v9 == "") {
+            Winner = document.getElementById("win").innerHTML = "Congratulation! You are win:)"
+        }
+    }
+</script>
+
+</html>
